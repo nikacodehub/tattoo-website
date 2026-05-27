@@ -3,13 +3,32 @@
     color:white;
     padding:20px;
     border-radius:12px;
+    overflow:hidden;
+    transition:transform 0.3s ease;
+    max-width:320px;
+    margin:0 auto;
+}
+
+.tattoo-card:hover{
+    transform:translateY(-6px);
+    background-color: #222;
 }
 
 .tattoo-card-image {
-    height:260px;
-    background-color:#333;
-    border-radius:8px;
-    margin-bottom:16px;
+    width: 100%;
+    height:400px;
+    max-width:300px;
+    object-fit:cover;
+    display:block;
+    transition:transform 0.3s ease;
+}
+
+.tattoo-card:hover img{
+    transform: scale(1.04);
+}
+
+.tattoo-card-content {
+    padding:20px;
 }
 
 .tattoo-card h3 {
@@ -18,4 +37,5 @@
 
 .tattoo-card p{
     color:#aaa;
+    margin:0;
 }

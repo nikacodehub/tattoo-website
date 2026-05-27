@@ -5,27 +5,33 @@ import "./Portfolio.css";
 const tattoos = [
     {
         title: "Floral tattoo",
-        description: "Delicate color flowers"
+        description: "Delicate color flowers",
+        image: "/images/IMG_3991.jpeg",
     },
     {
         title: "Black&Grey realism",
-        description:"Custom tattoo"
+        description:"Custom tattoo",
+        image: "/images/IMG_4012.jpeg",
     },
     {
         title:"Color realism",
-        description: "Detailed realism work"
+        description: "Detailed realism work",
+        image: "/images/IMG_4018.jpeg",
     },
      {
         title:"Color realism",
-        description: "Detailed realism work"
+        description: "Detailed realism work",
+        image: "/images/IMG_4020.jpeg",
     },
      {
         title:"Color realism",
-        description: "Detailed realism work"
+        description: "Detailed realism work",
+        image: "/images/IMG_7051.jpeg",
     },
      {
         title:"Color realism",
-        description: "Detailed realism work"
+        description: "Detailed realism work",
+        image: "/images/IMG_9307.jpeg",
     },
     
 ];
@@ -39,6 +45,7 @@ function Portfolio() {
                     <TattooCard
                     title={tattoo.title}
                     description={tattoo.description}
+                    image={tattoo.image}
                     />
                 ))}
                 </section>
