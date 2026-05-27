@@ -13,10 +13,10 @@ Personal portfolio website for a tattoo artist.
 -Flash designs page
 -Contact section
 
+## Status
+Work in progress
+
 ## Run locally
 ```bash
 npm install
 npm start
-
-## Status
-Work in progress
