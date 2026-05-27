@@ -1,0 +1,21 @@
+.tattoo-card {
+    background-color: #181818;
+    color:white;
+    padding:20px;
+    border-radius:12px;
+}
+
+.tattoo-card-image {
+    height:260px;
+    background-color:#333;
+    border-radius:8px;
+    margin-bottom:16px;
+}
+
+.tattoo-card h3 {
+    margin: 0 0 8px;
+}
+
+.tattoo-card p{
+    color:#aaa;
+}
