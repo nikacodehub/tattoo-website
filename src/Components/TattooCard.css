@@ -1,8 +1,7 @@
 .tattoo-card {
     background-color: #181818;
     color:white;
-    padding:20px;
-    border-radius:12px;
+    border-radius:8px;
     overflow:hidden;
     transition:transform 0.3s ease;
     max-width:320px;
@@ -14,10 +13,19 @@
     background-color: #222;
 }
 
+.tattoo-card-preview {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+}
+
 .tattoo-card-image {
     width: 100%;
     height:400px;
-    max-width:300px;
     object-fit:cover;
     display:block;
     transition:transform 0.3s ease;
@@ -28,7 +36,7 @@
 }
 
 .tattoo-card-content {
-    padding:20px;
+    padding:18px;
 }
 
 .tattoo-card h3 {

@@ -1,54 +1,39 @@
-import TattooCard from "../Components/TattooCard";
+import {useRef} from "react";
+import {Link} from "react-router-dom";
 
 import "./Portfolio.css";
 
-const tattoos = [
-    {
-        title: "Floral tattoo",
-        description: "Delicate color flowers",
-        image: "/images/IMG_3991.jpeg",
-    },
-    {
-        title: "Black&Grey realism",
-        description:"Custom tattoo",
-        image: "/images/IMG_4012.jpeg",
-    },
-    {
-        title:"Color realism",
-        description: "Detailed realism work",
-        image: "/images/IMG_4018.jpeg",
-    },
-     {
-        title:"Color realism",
-        description: "Detailed realism work",
-        image: "/images/IMG_4020.jpeg",
-    },
-     {
-        title:"Color realism",
-        description: "Detailed realism work",
-        image: "/images/IMG_7051.jpeg",
-    },
-     {
-        title:"Color realism",
-        description: "Detailed realism work",
-        image: "/images/IMG_9307.jpeg",
-    },
-    
-];
-
 function Portfolio() {
+    const portfolioRef = useRef(null);
+
+    function handleMouseMove(event) {
+        const rect = portfolioRef.current.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        portfolioRef.current.style.setProperty("--x", `${x}px`);
+        portfolioRef.current.style.setProperty("--y", `${y}px`);
+    }
+
     return (
-        <main className="portfolio-page">
-            <h1>Portfolio</h1>
-            <section className="portfolio-grid">
-                {tattoos.map((tattoo) =>(
-                    <TattooCard
-                    title={tattoo.title}
-                    description={tattoo.description}
-                    image={tattoo.image}
-                    />
-                ))}
-                </section>
+        <main
+            ref={portfolioRef}
+            className="portfolio-page"
+            onMouseMove={handleMouseMove}
+        >
+            <h2>NikaVera's Tattoo Works</h2>
+
+            <section className="portfolio-choice">
+                <Link to="/portfolio/black-grey" className="portfolio-choice-card portfolio-choice-black">
+                    <img src="/images/IMG_4013.jpeg" alt="Black and grey tattoos" />
+                    <span>Black & Grey Tattoos</span>
+                </Link>
+
+                <Link to="/portfolio/color" className="portfolio-choice-card portfolio-choice-color">
+                    <img src="/images/IMG_2957.jpeg" alt="Color tattoos" />
+                    <span>Color Tattoos</span>
+                </Link>
+            </section>
         </main>
     );
 }
