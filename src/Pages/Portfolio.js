@@ -18,7 +18,7 @@ function Portfolio() {
     return (
         <main
             ref={portfolioRef}
-            className="portfolio-page"
+            className="portfolio-page portfolio-choice-page"
             onMouseMove={handleMouseMove}
         >
             <h2>NikaVera's Tattoo Works</h2>

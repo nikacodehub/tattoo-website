@@ -1,0 +1,98 @@
+.about-page {
+    --x: 50%;
+    --y: 50%;
+
+    min-height: calc(100dvh - 60px);
+    padding: 96px 24px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    background:
+        radial-gradient(
+            circle 460px at var(--x) var(--y),
+            rgba(255, 95, 150, 0.2),
+            rgba(70, 140, 255, 0.09) 38%,
+            transparent 70%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(120,40,60,0.18),
+            rgba(30,85,125,0.12) 46%,
+            rgba(160,70,30,0.14)
+        ),
+        linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
+        #050505;
+    background-size: auto, auto, 36px 36px, 36px 36px, auto;
+}
+
+.about-content {
+    width: min(1040px, 100%);
+}
+
+.about-text h1 {
+    margin: 0 0 26px;
+    font-size: 42px;
+    line-height: 1;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
+    align-items: center;
+    gap: 44px;
+}
+
+.about-artist-image {
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 24px 42px rgba(0,0,0,0.48));
+}
+
+.about-text p {
+    margin: 0 0 18px;
+    color: rgba(255,255,255,0.76);
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    .about-page {
+        min-height: calc(100dvh - 44px);
+        padding: 84px 20px 28px;
+        align-items: flex-start;
+    }
+
+    .about-text h1 {
+        font-size: 34px;
+        margin-bottom: 18px;
+        text-align: center;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .about-artist-image {
+        width: min(260px, 82vw);
+        max-height: 320px;
+        margin: 0 auto;
+    }
+
+    .about-text p {
+        font-size: 15px;
+        line-height: 1.65;
+        text-align: center;
+    }
+}

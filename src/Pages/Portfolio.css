@@ -3,6 +3,9 @@
     --y: 50%;
     --grid-size: 36px;
 
+    position: relative;
+    isolation: isolate;
+
     min-height: calc(100dvh - 60px);
     color: white;
     padding: 64px 40px 24px;
@@ -44,6 +47,39 @@
         0 0,
         calc(50% + 18px) 0,
         center;
+}
+
+.portfolio-page > * {
+    position: relative;
+    z-index: 2;
+}
+
+.portfolio-choice-page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    clip-path: inset(0 0 0 50%);
+    background: radial-gradient(
+        circle 380px at var(--x) var(--y),
+        rgba(145, 22, 78, 0.42),
+        rgba(25, 72, 120, 0.22) 34%,
+        transparent 64%
+    );
+}
+
+.portfolio-choice-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    z-index: 1;
+    pointer-events: none;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.08);
 }
 
 .portfolio-page h2 {

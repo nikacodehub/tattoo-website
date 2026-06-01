@@ -1,0 +1,261 @@
+.flash-page {
+      --x: 50%;
+    --y: 50%;
+    min-height: calc(100dvh - 60px);
+    padding: 96px 40px 40px;
+    box-sizing: border-box;
+    color: white;
+    background:
+        radial-gradient(
+            circle 460px at var(--x) var(--y),
+            rgba(255, 95, 150, 0.16),
+            rgba(70, 140, 255, 0.08) 38%,
+            transparent 70%
+        ),
+        linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
+        #050505;
+    background-size: auto, 36px 36px, 36px 36px, auto;
+}
+
+
+
+.flash-grid {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.flash-card {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #181818;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.14);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.flash-card:hover {
+    transform: translateY(-6px);
+    background-color: #222;
+}
+
+.flash-card-preview {
+    width: 100%;
+    
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+}
+
+.flash-card-preview:focus {
+    outline: none;
+}
+
+.flash-card-preview:focus-visible {
+    outline: 1px solid rgba(255,255,255,0.38);
+    outline-offset: -1px;
+}
+
+.flash-card-preview img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.flash-card:hover .flash-card-preview img {
+    transform: scale(1.04);
+}
+
+.flash-card-content {
+    padding: 18px;
+    text-align: center;
+}
+
+.flash-card-content h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.flash-card-content p {
+    margin: 0;
+    color: #aaa;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.flash-subtitle {
+    margin: 0 0 32px;
+    color: #aaa;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.flash-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background: rgba(0,0,0,0.86);
+}
+
+.flash-lightbox-content {
+    max-width: min(900px, 92vw);
+    max-height: 88vh;
+    text-align: center;
+}
+
+.flash-lightbox-content img {
+    width: 100%;
+    max-height: 72vh;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+}
+
+.flash-lightbox-content h2 {
+    margin: 18px 0 8px;
+}
+
+.flash-lightbox-content p {
+    margin: 0;
+    color: #aaa;
+}
+
+.flash-lightbox-count {
+    margin-bottom: 12px;
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.flash-lightbox-close {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    background: rgba(0,0,0,0.45);
+    color: white;
+    cursor: pointer;
+}
+
+.flash-lightbox-close::before,
+.flash-lightbox-close::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background: currentColor;
+}
+
+.flash-lightbox-close::before {
+    transform: rotate(45deg);
+}
+
+.flash-lightbox-close::after {
+    transform: rotate(-45deg);
+}
+
+.flash-lightbox-close:hover {
+    background: rgba(255,255,255,0.14);
+}
+
+.flash-lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    background: rgba(0,0,0,0.42);
+    color: white;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.flash-lightbox-arrow::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    border-top: 4px solid currentColor;
+    border-right: 4px solid currentColor;
+}
+
+.flash-lightbox-arrow:hover {
+    background: rgba(255,255,255,0.14);
+}
+
+.flash-lightbox-arrow-left {
+    left: 28px;
+}
+
+.flash-lightbox-arrow-left::before {
+    transform: rotate(-135deg);
+    margin-left: 5px;
+}
+
+.flash-lightbox-arrow-right {
+    right: 28px;
+}
+
+.flash-lightbox-arrow-right::before {
+    transform: rotate(45deg);
+    margin-right: 5px;
+}
+
+@media (max-width: 700px) {
+    .flash-page {
+        padding: 84px 18px 32px;
+    }
+
+    .flash-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flash-subtitle {
+        font-size: 12px;
+        letter-spacing: 1.4px;
+    }
+
+    .flash-lightbox {
+    padding: 70px 18px 28px;
+}
+
+.flash-lightbox-arrow {
+    top: auto;
+    bottom: 24px;
+    transform: none;
+}
+
+.flash-lightbox-arrow-left {
+    left: 24px;
+}
+
+.flash-lightbox-arrow-right {
+    right: 24px;
+}
+}
