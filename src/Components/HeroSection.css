@@ -235,9 +235,9 @@ center;
     pointer-events: none;
     clip-path: inset(0 0 0 50%);
     background: radial-gradient(
-        circle 380px at var(--x) var(--y),
-        rgba(145, 22, 78, 0.42),
-        rgba(25, 72, 120, 0.22) 34%,
+        circle 200px at var(--x) var(--y),
+        rgba(145, 22, 77, 0.295),
+        
         transparent 64%
     );
 }

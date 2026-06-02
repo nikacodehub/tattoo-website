@@ -6,7 +6,7 @@ function ColorPortfolio() {
 
     return (
         <PortfolioGallery
-            title="Color Tattoos"
+            title="✦Color Tattoos✦"
             tattoos={colorTattoos}
             emptyText="Color works will be added soon."
             variantClassName="portfolio-color-page"

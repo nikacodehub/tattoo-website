@@ -6,7 +6,7 @@ function BlackGreyPortfolio() {
 
     return (
         <PortfolioGallery
-            title="Black & Grey Tattoos"
+            title="✦Black & Grey Tattoos✦"
             tattoos={blackGreyTattoos}
             emptyText="Black and grey works will be added soon."
             variantClassName="portfolio-black-grey-page"

@@ -21,7 +21,7 @@ function Portfolio() {
             className="portfolio-page portfolio-choice-page"
             onMouseMove={handleMouseMove}
         >
-            <h2>NikaVera's Tattoo Works</h2>
+            <h2>✦NikaVera's Tattoo Works✦</h2>
 
             <section className="portfolio-choice">
                 <Link to="/portfolio/black-grey" className="portfolio-choice-card portfolio-choice-black">
