@@ -33,7 +33,7 @@ function handleMouseMove(event) {
                         Instagram
                     </a>
 
-                    <a href="mailto:your@email.com">
+                    <a href="mailto:info.nikaveratattoo@gmail.com">
                         Email
                     </a>
 

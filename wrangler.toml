@@ -1,0 +1,13 @@
+name = "tattoo-website"
+main = "workers/website/src/index.mjs"
+compatibility_date = "2026-09-12"
+
+[assets]
+directory = "build"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*"]
+
+[[services]]
+binding = "BOOKING_EMAIL_WORKER"
+service = "tattoo-booking-email"

@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import "./Booking.css";
 
+const MAX_REFERENCE_IMAGE_SIZE = 5 * 1024 * 1024;
+
 function Booking() {
     const [formData, setFormData] = useState({
         name: "",
@@ -15,6 +17,7 @@ function Booking() {
     const [errors, setErrors] = useState({});
     const [touched, setTouched] = useState({});
     const [submitStatus, setSubmitStatus] = useState(null);
+    const [submitMessage, setSubmitMessage] = useState("");
 
     function handleMouseMove(event) {
         const rect = bookingRef.current.getBoundingClientRect();
@@ -29,6 +32,8 @@ function Booking() {
         const file = event.target.files[0];
 
         setReferenceImage(file);
+        setSubmitStatus(null);
+        setSubmitMessage("");
     }
 
     function validateForm(data, file) {
@@ -57,6 +62,10 @@ function Booking() {
             newErrors.referenceImage = "Please upload an image file.";
         }
 
+        if (file && file.size > MAX_REFERENCE_IMAGE_SIZE) {
+            newErrors.referenceImage = "Please upload an image smaller than 5MB.";
+        }
+
         return newErrors;
     }
 
@@ -71,7 +80,7 @@ function Booking() {
         setErrors(validateForm(formData, referenceImage));
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
         const validationErrors = validateForm(formData, referenceImage);
@@ -79,21 +88,59 @@ function Booking() {
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             setSubmitStatus("error");
-             setTouched({
-              name: true,
-              email: true,
-              instagram: true,
-              idea: true,
-              referenceImage: true,
-             });
+            setTouched({
+                name: true,
+                email: true,
+                instagram: true,
+                idea: true,
+                referenceImage: true,
+            });
             return;
         }
 
         setErrors({});
-        setSubmitStatus("success");
+        setSubmitStatus("submitting");
+        setSubmitMessage("");
 
-        console.log("Form data:", formData);
-        console.log("Reference image:", referenceImage);
+        const bookingRequest = new FormData();
+
+        Object.entries(formData).forEach(([key, value]) => {
+            bookingRequest.append(key, value);
+        });
+
+        if (referenceImage) {
+            bookingRequest.append("referenceImage", referenceImage);
+        }
+
+        try {
+            const response = await fetch("/api/booking", {
+                method: "POST",
+                body: bookingRequest,
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                if (result.errors) {
+                    setErrors(result.errors);
+                    setTouched({
+                        name: true,
+                        email: true,
+                        instagram: true,
+                        idea: true,
+                        referenceImage: true,
+                    });
+                }
+
+                throw new Error(result.message || "Unable to send your request right now.");
+            }
+
+            setSubmitStatus("success");
+            setSubmitMessage(result.message || "Thank you! Your request has been sent.");
+        } catch (error) {
+            setSubmitStatus("error");
+            setSubmitMessage(error.message || "Unable to send your request right now.");
+        }
     }
 
     function handleChange(event) {
@@ -103,6 +150,8 @@ function Booking() {
             ...currentData,
             [name]: value,
         }));
+        setSubmitStatus(null);
+        setSubmitMessage("");
     }
 
     return (
@@ -210,18 +259,20 @@ function Booking() {
                         )}
                     </label>
                     {submitStatus === "success" && (
-    <p className="booking-submit-message booking-submit-message-success">
-        Thank you! Your request is ready to be sent.
-    </p>
-)}
+                        <p className="booking-submit-message booking-submit-message-success">
+                            {submitMessage || "Thank you! Your request has been sent."}
+                        </p>
+                    )}
 
-{submitStatus === "error" && (
-    <p className="booking-submit-message booking-submit-message-error">
-        Oops! Please check the highlighted fields.
-    </p>
-)}
+                    {submitStatus === "error" && (
+                        <p className="booking-submit-message booking-submit-message-error">
+                            {submitMessage || "Oops! Please check the highlighted fields."}
+                        </p>
+                    )}
 
-                    <button type="submit">Send request</button>
+                    <button type="submit" disabled={submitStatus === "submitting"}>
+                        {submitStatus === "submitting" ? "Sending..." : "Send request"}
+                    </button>
                 </form>
             </section>
         </main>

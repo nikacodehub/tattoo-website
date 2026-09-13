@@ -1,0 +1,13 @@
+name = "tattoo-booking-email"
+main = "src/index.js"
+compatibility_date = "2026-09-12"
+workers_dev = false
+
+[[send_email]]
+name = "EMAIL"
+destination_address = "info.nikaveratattoo@gmail.com"
+allowed_sender_addresses = ["bookings@nikaveratattoo.com"]
+
+[vars]
+BOOKING_FROM_EMAIL = "bookings@nikaveratattoo.com"
+BOOKING_RECIPIENT = "info.nikaveratattoo@gmail.com"

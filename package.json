@@ -17,6 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:website-worker": "node --test workers/website/src/*.test.mjs",
+    "test:booking-email-worker": "npm --prefix workers/booking-email test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
