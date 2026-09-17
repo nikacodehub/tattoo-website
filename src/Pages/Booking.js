@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import SEO from "../Components/SEO";
 import "./Booking.css";
 
 const MAX_REFERENCE_IMAGE_SIZE = 5 * 1024 * 1024;
@@ -155,127 +156,134 @@ function Booking() {
     }
 
     return (
-        <main ref={bookingRef} className="booking-page" onMouseMove={handleMouseMove}>
-            <section className="booking-content">
-                <div className="booking-intro">
-                    <p className="booking-subtitle">Tattoo request</p>
-                    <h1>Book a tattoo</h1>
-                    <p>
-                        Tell me about your idea, placement and preferred contact method. I will review your request and
-                        get back to you.
-                    </p>
-                </div>
+        <>
+            <SEO
+                title="Book a Tattoo"
+                description="Send a tattoo request to Nika Vera Tattoo in Reykjavik with your idea, placement, preferred contact method and reference image."
+                canonicalPath="/booking"
+            />
+            <main ref={bookingRef} className="booking-page" onMouseMove={handleMouseMove}>
+                <section className="booking-content">
+                    <div className="booking-intro">
+                        <p className="booking-subtitle">Tattoo request</p>
+                        <h1>Book a tattoo</h1>
+                        <p>
+                            Tell me about your idea, placement and preferred contact method. I will review your request and
+                            get back to you.
+                        </p>
+                    </div>
 
-                <form className="booking-form" onSubmit={handleSubmit}>
-                    <label>
-                        Name
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {touched.name && errors.name && <span className="booking-error">{errors.name}</span>}
-                    </label>
-
-                    <fieldset className="booking-fieldset">
-                        <legend>Preferred contact method</legend>
-
+                    <form className="booking-form" onSubmit={handleSubmit}>
                         <label>
-                            <input
-                                type="radio"
-                                name="contactMethod"
-                                value="email"
-                                checked={formData.contactMethod === "email"}
-                                onChange={handleChange}
-                            />
-                            Email
-                        </label>
-
-                        <label>
-                            <input
-                                type="radio"
-                                name="contactMethod"
-                                value="instagram"
-                                checked={formData.contactMethod === "instagram"}
-                                onChange={handleChange}
-                            />
-                            Instagram
-                        </label>
-                    </fieldset>
-
-                    {formData.contactMethod === "email" ? (
-                        <label>
-                            Email
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                            {touched.email && errors.email && <span className="booking-error">{errors.email}</span>}
-                        </label>
-                    ) : (
-                        <label>
-                            Instagram
+                            Name
                             <input
                                 type="text"
-                                name="instagram"
-                                value={formData.instagram}
+                                name="name"
+                                value={formData.name}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
-                            {touched.instagram && errors.instagram && (
-                                <span className="booking-error">{errors.instagram}</span>
+                            {touched.name && errors.name && <span className="booking-error">{errors.name}</span>}
+                        </label>
+
+                        <fieldset className="booking-fieldset">
+                            <legend>Preferred contact method</legend>
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="contactMethod"
+                                    value="email"
+                                    checked={formData.contactMethod === "email"}
+                                    onChange={handleChange}
+                                />
+                                Email
+                            </label>
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="contactMethod"
+                                    value="instagram"
+                                    checked={formData.contactMethod === "instagram"}
+                                    onChange={handleChange}
+                                />
+                                Instagram
+                            </label>
+                        </fieldset>
+
+                        {formData.contactMethod === "email" ? (
+                            <label>
+                                Email
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {touched.email && errors.email && <span className="booking-error">{errors.email}</span>}
+                            </label>
+                        ) : (
+                            <label>
+                                Instagram
+                                <input
+                                    type="text"
+                                    name="instagram"
+                                    value={formData.instagram}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {touched.instagram && errors.instagram && (
+                                    <span className="booking-error">{errors.instagram}</span>
+                                )}
+                            </label>
+                        )}
+
+                        <label>
+                            Tattoo idea
+                            <textarea
+                                name="idea"
+                                rows="5"
+                                value={formData.idea}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            {touched.idea && errors.idea && <span className="booking-error">{errors.idea}</span>}
+                        </label>
+
+                        <label>
+                            Reference image (optional)
+                            <input
+                                type="file"
+                                name="referenceImage"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                                onBlur={handleBlur}
+                            />
+                            {touched.referenceImage && errors.referenceImage && (
+                                <span className="booking-error">{errors.referenceImage}</span>
                             )}
                         </label>
-                    )}
-
-                    <label>
-                        Tattoo idea
-                        <textarea
-                            name="idea"
-                            rows="5"
-                            value={formData.idea}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {touched.idea && errors.idea && <span className="booking-error">{errors.idea}</span>}
-                    </label>
-
-                    <label>
-                        Reference image (optional)
-                        <input
-                            type="file"
-                            name="referenceImage"
-                            accept="image/*"
-                            onChange={handleFileChange}
-                            onBlur={handleBlur}
-                        />
-                        {touched.referenceImage && errors.referenceImage && (
-                            <span className="booking-error">{errors.referenceImage}</span>
+                        {submitStatus === "success" && (
+                            <p className="booking-submit-message booking-submit-message-success">
+                                {submitMessage || "Thank you! Your request has been sent."}
+                            </p>
                         )}
-                    </label>
-                    {submitStatus === "success" && (
-                        <p className="booking-submit-message booking-submit-message-success">
-                            {submitMessage || "Thank you! Your request has been sent."}
-                        </p>
-                    )}
 
-                    {submitStatus === "error" && (
-                        <p className="booking-submit-message booking-submit-message-error">
-                            {submitMessage || "Oops! Please check the highlighted fields."}
-                        </p>
-                    )}
+                        {submitStatus === "error" && (
+                            <p className="booking-submit-message booking-submit-message-error">
+                                {submitMessage || "Oops! Please check the highlighted fields."}
+                            </p>
+                        )}
 
-                    <button type="submit" disabled={submitStatus === "submitting"}>
-                        {submitStatus === "submitting" ? "Sending..." : "Send request"}
-                    </button>
-                </form>
-            </section>
-        </main>
+                        <button type="submit" disabled={submitStatus === "submitting"}>
+                            {submitStatus === "submitting" ? "Sending..." : "Send request"}
+                        </button>
+                    </form>
+                </section>
+            </main>
+        </>
     );
 }
 

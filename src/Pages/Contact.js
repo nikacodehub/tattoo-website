@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../Components/SEO";
 import "./Contact.css";
 
 function Contact() {
@@ -14,37 +15,44 @@ function handleMouseMove(event) {
     contactRef.current.style.setProperty("--y", `${y}px`);
 }
     return (
-        <main
-    ref={contactRef}
-    className="contact-page"
-    onMouseMove={handleMouseMove}
->
-            <section className="contact-content">
-                <p className="contact-subtitle">Get in touch</p>
-                <h1>Contact Me</h1>
+        <>
+            <SEO
+                title="Contact"
+                description="Contact Nika Vera Tattoo in Reykjavik for tattoo questions, collaborations, general inquiries or booking form access."
+                canonicalPath="/contact"
+            />
+            <main
+                ref={contactRef}
+                className="contact-page"
+                onMouseMove={handleMouseMove}
+            >
+                <section className="contact-content">
+                    <p className="contact-subtitle">Get in touch</p>
+                    <h1>Contact Me</h1>
 
-                <p className="contact-text">
-                    For tattoo questions, collaborations or general inquiries, feel free to contact me.
-                    If you want to request a tattoo project, please use the booking form.
-                </p>
+                    <p className="contact-text">
+                        For tattoo questions, collaborations or general inquiries, feel free to contact me.
+                        If you want to request a tattoo project, please use the booking form.
+                    </p>
 
-                <div className="contact-links">
-                    <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-                        Instagram
-                    </a>
+                    <div className="contact-links">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+                            Instagram
+                        </a>
 
-                    <a href="mailto:info.nikaveratattoo@gmail.com">
-                        Email
-                    </a>
+                        <a href="mailto:info.nikaveratattoo@gmail.com">
+                            Email
+                        </a>
 
-                    <Link to="/booking">
-                        Booking form
-                    </Link>
-                </div>
+                        <Link to="/booking">
+                            Booking form
+                        </Link>
+                    </div>
 
-                <p className="contact-location">Reykjavik, Iceland</p>
-            </section>
-        </main>
+                    <p className="contact-location">Reykjavik, Iceland</p>
+                </section>
+            </main>
+        </>
     );
 }
 

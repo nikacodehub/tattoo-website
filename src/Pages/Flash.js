@@ -1,125 +1,171 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import SEO from "../Components/SEO";
 import "./Flash.css";
 
 const flashDesigns = [
+      {
+        title: "Hidden Gaze",
+        description: "Similar size and placement will take approximately 2 sessions.",
+        image: "/images/legTattooGirl1.jpeg",
+    },
+      {
+        title: "Rebel Within",
+        description: "Similar size and placement will take approximately 1 session.",
+        image: "/images/legTattooGirl2.jpeg",
+    },
+      {
+        title: "Nordic Raven",
+        description: "Similar size and placement will take approximately 3 hours.",
+        image: "/images/MinimalisticRavenWannaDo.jpeg",
+    },
+     {
+        title: "Ravens and Rune",
+        description: "Similar size and placement will take approximately 1 session.",
+        image: "/images/ravensWannaDo.jpeg",
+    },
+      {
+        title: "Viking Longship with Vegvisir",
+        description: "Similar size and placement will take approximately 4 hours.",
+        image: "/images/ShipWannaDoMinimalism.jpeg",
+    },
+     {
+        title: "Raven with a quote by Edgar Allan Poe",
+        description: "Similar size and placement will take approximately 2 sessions.",
+        image: "/images/wannadoChest.jpeg",
+    },
+      {
+        title: "Falling Within",
+        description: "Similar size and placement will take approximately 1,5 sessions.",
+        image: "/images/WannaDoConcept1.jpeg",
+    },
+     {
+        title: "Nocturne",
+        description: "Similar size and placement will take approximately 2 sessions.",
+        image: "/images/WannaDoConcept2.jpeg",
+    },
+     {
+        title: "Obscured",
+        description: "Approximate time and placements after clarification.",
+        image: "/images/WannaDoLeavesFace.jpeg",
+    },
     {
         title: "Fragmented portrait",
-        description: "Black and grey portrait with hands, cracked details and sharp abstract strokes.",
+        description: "Similar size and placement will take approximately 1 session.",
         image: "/images/flashIMG_1079.jpeg",
     },
     {
         title: "Forest spirit",
-        description: "Moody forest portrait with moonlight, owl details and warm eye accents.",
+        description: "Similar size and placement will take approximately 1 session.",
         image: "/images/flashIMG_1788.jpeg",
     },
     {
         title: "Tiger and roses",
-        description: "Color shoulder concept with a tiger head, roses and soft warm background tones.",
+        description: "Similar size and placement will take approximately 1,5 session.",
         image: "/images/flashIMG_2880.jpeg",
     },
     {
         title: "Blue paint portrait",
-        description: "Expressive color portrait with painted hands, blue tones and graphic texture.",
+        description: "Similar size and placement will take approximately 2 sessions.",
         image: "/images/flashIMG_2881.jpeg",
     },
     {
         title: "Ornamental daisy",
-        description: "Delicate flower design with clean black ornamental strokes and soft color.",
+        description: "Similar size and placement will take approximately 3 hours.",
         image: "/images/flashIMG_2882.jpeg",
     },
     {
         title: "Viking raven",
-        description: "Black and grey Viking-inspired portrait with raven elements and geometric framing.",
+        description: "Similar size and placement will take approximately 1 session.",
         image: "/images/flashIMG_2883.jpeg",
     },
     {
         title: "Split bear mask",
-        description: "Black and grey bear concept mixing realistic texture with ornamental mask details.",
+        description: "Similar size and placement will take approximately 1 session.",
         image: "/images/flashIMG_2885.jpeg",
     },
     {
         title: "Viking skull",
-        description: "Dark Norse skull design with helmet, axe details and geometric composition.",
+        description: "Similar size and placement will take approximately 1 session.",
         image: "/images/flashIMG_2886.jpeg",
     },
     {
         title: "Warrior portrait",
-        description: "Black and grey warrior woman with helmet, sword detail and soft realistic shading.",
+        description: "Similar size and placement will take approximately 1 session.",
         image: "/images/flashIMG_2887.jpeg",
     },
     {
-        title: "Ornamental eye",
-        description: "Graphic forearm design with an ornamental eye and a bright turquoise accent.",
+        title: "Sacred Heart Eye",
+        description: "Similar size and placement will take approximately 1 session.",
         image: "/images/flashIMG_2888.jpeg",
     },
     {
         title: "Broken icon",
-        description: "Fragmented portrait design with rays, sword details and dramatic black shading.",
+        description: "Similar size and placement will take approximately 1 session.",
         image: "/images/flashIMG_2889.jpeg",
     },
     {
         title: "Memento raven",
-        description: "Black and grey raven and sword concept with an architectural arch composition.",
+        description: "Similar size and placement will take approximately 1 session.",
         image: "/images/flashIMG_2890.jpeg",
     },
     {
         title: "Floral muse",
-        description: "Soft black and grey portrait framed with large flowers and elegant shading.",
+        description: "Similar size and placement will take approximately 1,5 session.",
         image: "/images/flashIMG_2895.jpeg",
     },
     {
         title: "Flower portrait",
-        description: "Gentle shoulder concept with a female portrait, flowers and smooth grey tones.",
+        description: "Similar size and placement will take approximately 1,5 session.",
         image: "/images/flashIMG_2896.jpeg",
     },
     {
         title: "Pink peony",
-        description: "Color floral flash with bright petals, black stems and flowing graphic lines.",
+        description: "Similar size and placement will take approximately 4 hours.",
         image: "/images/flashIMG_2898.jpeg",
     },
     {
         title: "Red rose ornament",
-        description: "Color shoulder design with a red rose, ornamental lines and soft black accents.",
+        description: "Similar size and placement will take approximately 4 hours.",
         image: "/images/flashIMG_2899.jpeg",
     },
     {
         title: "Red poppy flow",
-        description: "Bright floral concept with red petals, dark ornamental curves and elegant movement.",
+        description: "Similar size and placement will take approximately 3 hours.",
         image: "/images/flashIMG_2900.jpeg",
     },
     {
         title: "Gothic muse",
-        description: "Dark female portrait with spiked headpiece, graphic strokes and dramatic contrast.",
+        description: "Similar size and placement will take approximately 2 sessions.",
         image: "/images/flashIMG_2909.jpeg",
     },
     {
         title: "Veiled rose",
-        description: "Black and grey portrait with hands, jewelry, rose details and soft realism.",
+        description: "Similar size and placement will take approximately 2 sessions.",
         image: "/images/flashIMG_2910.jpeg",
     },
     {
         title: "Sugar skull lady",
-        description: "Decorative portrait with skull makeup, vertical graphic strokes and bold contrast.",
+        description: "Similar size and placement will take approximately 2 sessions.",
         image: "/images/flashIMG_2911.jpeg",
     },
     {
         title: "Viking armband",
-        description: "Norse-inspired armband project with knotwork, texture and black and grey flow.",
+        description: "Similar size and placement will take approximately 2 sessions.",
         image: "/images/flashIMG_3482.jpeg",
     },
     {
         title: "Warrior sleeve",
-        description: "Full sleeve concept with warrior portrait, lion energy and warm eye accents.",
+        description: "Similar size and placement will take approximately 3 session (only outer side of the arm).",
         image: "/images/flashIMG_9861.jpeg",
     },
     {
         title: "Dark fantasy sleeve",
-        description: "Full sleeve idea with horned figure, raven details and deep black atmosphere.",
+        description: "FSimilar size and placement will take approximately 3 session (only outer side of the arm).",
         image: "/images/flashIMG_9863.jpeg",
     },
     {
         title: "Dragon sleeve",
-        description: "Black and grey sleeve concept with dragon movement, female portrait and soft smoke.",
+        description: "Similar size and placement will take approximately 3 session (only outer side of the arm).",
         image: "/images/flashIMG_9864.jpeg",
     },
 ];
@@ -186,7 +232,13 @@ function Flash() {
     }, [selectedDesignIndex, showPreviousDesign, showNextDesign]);
 
     return (
-        <main ref={flashRef} className="flash-page" onMouseMove={handleMouseMove}>
+        <>
+            <SEO
+                title="Flash Tattoo Designs"
+                description="Browse available wanna-do flash tattoo designs by Nika Vera, including black and grey, color, ornamental and realism concepts."
+                canonicalPath="/flash"
+            />
+            <main ref={flashRef} className="flash-page" onMouseMove={handleMouseMove}>
             <h2 className="flash-subtitle">✦Wanna-do designs✦</h2>
 
             <section className="flash-grid">
@@ -244,7 +296,8 @@ function Flash() {
                     />
                 </div>
             )}
-        </main>
+            </main>
+        </>
     );
 }
 

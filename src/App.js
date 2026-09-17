@@ -9,6 +9,7 @@ import Home from"./Pages/Home";
 import Portfolio from "./Pages/Portfolio";
 import BlackGreyPortfolio from "./Pages/BlackGreyPortfolio";
 import ColorPortfolio from "./Pages/ColorPortfolio";
+import Prices from "./Pages/Prices";
 
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
@@ -21,6 +22,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About /> }/>
       <Route path="/booking" element={<Booking /> }/>
+      <Route path="/prices" element={<Prices /> }/>
       <Route path="/contact" element={<Contact /> }/>
       <Route path="/flash" element={<Flash /> }/>
       <Route path="/portfolio" element={<Portfolio /> }/>
